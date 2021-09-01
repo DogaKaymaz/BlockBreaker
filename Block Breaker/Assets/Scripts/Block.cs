@@ -5,8 +5,18 @@ using UnityEngine;
 
 public class Block : MonoBehaviour
 {
+   private Hand handScript;
+
+   private void Start()
+   {
+      handScript = FindObjectOfType<Hand>();
+   }
+
    private void OnCollisionEnter2D(Collision2D other)
    {
-      Destroy(gameObject);
+      if (handScript.hasStarted)
+      {
+         Destroy(gameObject);  
+      }
    }
 }

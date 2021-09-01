@@ -11,12 +11,13 @@ public class Hand : MonoBehaviour
 
     private Rigidbody2D handRB;
 
-    private bool hasStarted;
+    public bool hasStarted;
 
     [SerializeField] private float
         handVelocityX = 2f,
         handVelocityY = 15,
-        collisionForce = 50f;
+        collisionForce = 50f,
+        balanceDownPower = 9f;
     
     // Start is called before the first frame update
     void Start()
@@ -37,15 +38,37 @@ public class Hand : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        Debug.Log("BİR ŞEYLER OLUYOR");
-        handRB.AddForce(transform.up * collisionForce);
+        if (hasStarted)
+        {
+            if (other.gameObject.name == "leftWall")
+            {
+                GiveRightPowerToHand();
+            }
+            
+            else if (other.gameObject.name == "rightWall")
+            {
+                GiveLeftPowerToHand();
+            }
+            
+            else if (other.gameObject.name == "upWall")
+            {
+                GiveDownPowerToHand();
+            }
+
+            else
+            {
+                GiveUpPowerToHand();
+            }
+            
+        }
     }
 
     private void LaunchOnMouseClick()
     {
         if (Input.GetMouseButton(0))
         {
-            handRB.velocity = new Vector2(handVelocityX, handVelocityY);
+            GiveUpPowerToHand();
+            // handRB.velocity = new Vector2(handVelocityX, handVelocityY);
             hasStarted = true;
         }
     }
@@ -54,4 +77,27 @@ public class Hand : MonoBehaviour
     {
         transform.position = platform.paddlePos + platformToHandVector;
     }
+
+    
+    void GiveUpPowerToHand()
+    {
+        handRB.AddForce(Vector2.up * collisionForce);
+    }
+    void GiveDownPowerToHand()
+    {
+        handRB.AddForce(Vector2.down * collisionForce / balanceDownPower);
+    }
+    
+    void GiveRightPowerToHand()
+    {
+        handRB.AddForce(Vector2.right * collisionForce);
+    }
+    
+    void GiveLeftPowerToHand()
+    {
+        handRB.AddForce(Vector2.left * collisionForce);
+    }
+    
+    
+    
 }
