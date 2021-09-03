@@ -1,18 +1,49 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManagement : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+
+    public void PlayBrickBreakerNextLevel()
     {
-        
+        SceneManager.LoadScene(sceneBuildIndex: StaticDatas.integerIndicatingWhichSceneItIs + 3 );
     }
 
-    // Update is called once per frame
-    void Update()
+
+    public void OpenLevelsPage()
     {
-        
+        SceneManager.LoadScene(sceneBuildIndex: 1);
     }
+    
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene(sceneBuildIndex: 0);
+    }
+
+    public void RetryLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void GameLevelEnd()
+    {
+        SceneManager.LoadScene(sceneBuildIndex: 2);
+    }
+
+    public void GalleryPage()
+    {
+        Debug.Log("Gallery Page Opened.");
+    }
+    
+
+    public void QuitGame()
+    {
+        Debug.Log("Quit");
+        Application.Quit();
+    }
+    
+    
 }

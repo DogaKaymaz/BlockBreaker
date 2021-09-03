@@ -12,6 +12,7 @@ public class Hand : MonoBehaviour
     private Rigidbody2D handRB;
 
     public bool hasStarted;
+    
 
     [SerializeField] private float
         handVelocityX = 2f,
@@ -19,14 +20,12 @@ public class Hand : MonoBehaviour
         collisionForce = 50f,
         balanceDownPower = 9f;
     
-    // Start is called before the first frame update
     void Start()
     {
         platformToHandVector = transform.position - platform.transform.position;
         handRB = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (!hasStarted)
