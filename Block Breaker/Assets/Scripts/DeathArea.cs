@@ -7,13 +7,24 @@ public class DeathArea : MonoBehaviour
 {
     // [SerializeField] private GameManagement gameManagementScript;
     [SerializeField] private Canvas FailCanvas;
+    private AudioSource _audioSource;
+    [SerializeField] private GameManagement _gameManagementScript;
+
+    private void Awake()
+    {
+        _audioSource = GetComponent<AudioSource>();
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        
-        Debug.Log("DIED DIED DIED");
+        if (!_gameManagementScript.hasLevelCompleted)
+        {
+            Debug.Log("DIED DIED DIED");
+       
         FailCanvas.gameObject.SetActive(true);
-        
-        Destroy(other.gameObject);
+        _audioSource.Play();
 
+        Destroy(other.gameObject);
+        }
     }
 }

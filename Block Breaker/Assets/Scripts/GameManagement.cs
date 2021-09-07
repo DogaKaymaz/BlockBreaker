@@ -6,10 +6,13 @@ using UnityEngine.SceneManagement;
 
 public class GameManagement : MonoBehaviour
 {
+    [NonSerialized] public bool hasLevelCompleted = false;
 
     public void PlayBrickBreakerNextLevel()
     {
-        SceneManager.LoadScene(sceneBuildIndex: StaticDatas.integerIndicatingWhichSceneItIs + 3 );
+        SceneManager.LoadScene(sceneBuildIndex: UndestroyableNumber.integerIndicatingWhichSceneItIs + 3 );
+        Debug.Log(UndestroyableNumber.integerIndicatingWhichSceneItIs + 3);
+        makeBoolFalse();
     }
 
 
@@ -43,6 +46,16 @@ public class GameManagement : MonoBehaviour
     {
         Debug.Log("Quit");
         Application.Quit();
+    }
+
+    public void makeBoolFalse()
+    {
+        hasLevelCompleted = false;
+    }
+
+    public void makeBoolTrue()
+    {
+        hasLevelCompleted = true;
     }
     
     

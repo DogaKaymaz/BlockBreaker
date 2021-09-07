@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = System.Random;
 
 public class Hand : MonoBehaviour
 {
@@ -12,6 +13,10 @@ public class Hand : MonoBehaviour
     private Rigidbody2D handRB;
 
     public bool hasStarted;
+
+    [SerializeField] private AudioClip[] handSounds;
+
+    private AudioSource _audioSource;
     
 
     [SerializeField] private float
@@ -24,6 +29,7 @@ public class Hand : MonoBehaviour
     {
         platformToHandVector = transform.position - platform.transform.position;
         handRB = GetComponent<Rigidbody2D>();
+        _audioSource = gameObject.GetComponent<AudioSource>();
     }
 
     void Update()
@@ -39,24 +45,29 @@ public class Hand : MonoBehaviour
     {
         if (hasStarted)
         {
+            
             if (other.gameObject.name == "leftWall")
             {
                 GiveRightPowerToHand();
+                PlaySounds();
             }
             
             else if (other.gameObject.name == "rightWall")
             {
                 GiveLeftPowerToHand();
+                PlaySounds();
             }
             
             else if (other.gameObject.name == "upWall")
             {
                 GiveDownPowerToHand();
+                PlaySounds();
             }
 
             else
             {
                 GiveUpPowerToHand();
+                PlaySounds();
             }
             
         }
@@ -96,7 +107,12 @@ public class Hand : MonoBehaviour
     {
         handRB.AddForce(Vector2.left * collisionForce);
     }
-    
+
+    void PlaySounds()
+    {
+        AudioClip clip = handSounds[UnityEngine.Random.Range(0, handSounds.Length)];
+        _audioSource.PlayOneShot(clip);
+    }
     
     
 }

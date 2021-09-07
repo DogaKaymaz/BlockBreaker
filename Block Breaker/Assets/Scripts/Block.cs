@@ -6,6 +6,7 @@ using UnityEngine;
 public class Block : MonoBehaviour
 {
    private Hand handScript;
+   [SerializeField] private AudioClip breakSound;
 
    private void Start()
    {
@@ -16,6 +17,7 @@ public class Block : MonoBehaviour
    {
       if (handScript.hasStarted)
       {
+         AudioSource.PlayClipAtPoint(breakSound, Camera.main.transform.position);
          Destroy(gameObject);  
       }
    }
