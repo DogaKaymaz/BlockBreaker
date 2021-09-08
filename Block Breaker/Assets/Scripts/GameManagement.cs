@@ -56,6 +56,7 @@ public class GameManagement : MonoBehaviour
     public void makeBoolTrue()
     {
         hasLevelCompleted = true;
+        Debug.Log("düz kontrol" + hasLevelCompleted);
     }
     
     
