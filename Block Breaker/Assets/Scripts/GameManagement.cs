@@ -8,6 +8,8 @@ public class GameManagement : MonoBehaviour
 {
     [NonSerialized] public bool hasLevelCompleted = false;
 
+    
+
     public void PlayBrickBreakerNextLevel()
     {
         SceneManager.LoadScene(sceneBuildIndex: UndestroyableNumber.integerIndicatingWhichSceneItIs + 3 );
@@ -50,13 +52,14 @@ public class GameManagement : MonoBehaviour
 
     public void makeBoolFalse()
     {
+        Debug.Log("bi yerde false a mı çekiyor");
         hasLevelCompleted = false;
     }
 
     public void makeBoolTrue()
     {
         hasLevelCompleted = true;
-        Debug.Log("düz kontrol" + hasLevelCompleted);
+        Debug.Log("en son true çekiyor mu " + hasLevelCompleted);
     }
     
     

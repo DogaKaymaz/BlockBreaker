@@ -38,11 +38,11 @@ public class UndestroyableNumber : MonoBehaviour
     private void Update()
     {
         hasSceneChanged();
-        
-        if (sceneChangeCheck || _gameManagement.hasLevelCompleted)
-        {
-            LevelCounter();
-        }
+        LevelCounter();
+        // if (sceneChangeCheck || _gameManagement.hasLevelCompleted)
+        // {
+        //     LevelCounter();
+        // }
     }
 
     public void LevelCounter()
@@ -50,15 +50,18 @@ public class UndestroyableNumber : MonoBehaviour
         _levelScript = FindObjectOfType<levelScript>();
         
         
-        if (_levelScript.whichLevel != -1 && sceneChangeCheck)
+        
+        if ( _levelScript.whichLevel != -1 && _gameManagement.hasLevelCompleted)
+        {
+            integerIndicatingWhichSceneItIs = _levelScript.whichLevel;
+            Debug.Log("burayı 4 vermesi lazım " + integerIndicatingWhichSceneItIs);
+        }
+        
+        else if (_levelScript.whichLevel != -1 && sceneChangeCheck && !_gameManagement.hasLevelCompleted)
         {
             integerIndicatingWhichSceneItIs = _levelScript.whichLevel - 1;
         }
-        
-        else if ( _levelScript.whichLevel != -1 && _gameManagement.hasLevelCompleted)
-        {
-            integerIndicatingWhichSceneItIs = _levelScript.whichLevel;
-        }
+
         
     }
 
