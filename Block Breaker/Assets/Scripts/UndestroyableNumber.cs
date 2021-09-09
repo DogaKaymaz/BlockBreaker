@@ -10,12 +10,12 @@ public class UndestroyableNumber : MonoBehaviour
     public static int integerIndicatingWhichSceneItIs;
     private int lastScene;
     private bool sceneChangeCheck;
-
     private GameManagement _gameManagement;
+
 
     private void Awake()
     {
-        
+
         _gameManagement = FindObjectOfType<GameManagement>();
         int unCount = FindObjectsOfType<UndestroyableNumber>().Length; // unCount = UndestroyableNumber Count
 
@@ -39,7 +39,7 @@ public class UndestroyableNumber : MonoBehaviour
     {
         hasSceneChanged();
         
-        if (sceneChangeCheck)
+        if (sceneChangeCheck || _gameManagement.hasLevelCompleted)
         {
             LevelCounter();
         }
@@ -48,11 +48,16 @@ public class UndestroyableNumber : MonoBehaviour
     public void LevelCounter()
     {
         _levelScript = FindObjectOfType<levelScript>();
-        if (_levelScript.whichLevel != -1)
+        
+        
+        if (_levelScript.whichLevel != -1 && sceneChangeCheck)
         {
-            Debug.Log("asıl burası önemli" + _gameManagement.hasLevelCompleted);
+            integerIndicatingWhichSceneItIs = _levelScript.whichLevel - 1;
+        }
+        
+        else if ( _levelScript.whichLevel != -1 && _gameManagement.hasLevelCompleted)
+        {
             integerIndicatingWhichSceneItIs = _levelScript.whichLevel;
-            
         }
         
     }

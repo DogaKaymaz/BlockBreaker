@@ -8,10 +8,8 @@ public class parentBrickScript : MonoBehaviour
     private AudioSource _audioSource;
 
     [SerializeField] private Canvas LevelCompletedCanvas;
-
-    [NonSerialized] public bool dontChangeNumberBeforeLevelCompleted;
     
-
+    
     private void Awake()
     {
         _audioSource = gameObject.GetComponent<AudioSource>();
@@ -27,7 +25,6 @@ public class parentBrickScript : MonoBehaviour
         if (transform.childCount == 0)
         {
             gameManagementScript.makeBoolTrue();
-            dontChangeNumberBeforeLevelCompleted = true;
 
             PlayAudio();
             ShowCanvas();
