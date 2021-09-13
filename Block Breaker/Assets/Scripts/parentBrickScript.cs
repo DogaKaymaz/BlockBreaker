@@ -5,6 +5,7 @@ using UnityEngine;
 public class parentBrickScript : MonoBehaviour
 {
     [SerializeField] private GameManagement gameManagementScript;
+    
     private AudioSource _audioSource;
 
     [SerializeField] private Canvas LevelCompletedCanvas;
@@ -51,8 +52,4 @@ public class parentBrickScript : MonoBehaviour
             LevelCompletedCanvas.gameObject.SetActive(true);
         }
     }
-
-
-
-
 }

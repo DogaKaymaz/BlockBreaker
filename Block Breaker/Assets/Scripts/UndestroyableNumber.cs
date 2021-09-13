@@ -24,13 +24,12 @@ public class UndestroyableNumber : MonoBehaviour
             gameObject.SetActive(false);
             Destroy(this);
         }
-
+        
         else
         {
             DontDestroyOnLoad(this);
         }
-
-
+        
         lastScene = SceneManager.GetActiveScene().buildIndex;
        
     }
@@ -47,22 +46,19 @@ public class UndestroyableNumber : MonoBehaviour
 
     public void LevelCounter()
     {
+        
         _levelScript = FindObjectOfType<levelScript>();
-        
-        
-        
+
         if ( _levelScript.whichLevel != -1 && _gameManagement.hasLevelCompleted)
         {
             integerIndicatingWhichSceneItIs = _levelScript.whichLevel;
-            Debug.Log("burayı 4 vermesi lazım " + integerIndicatingWhichSceneItIs);
+            Debug.Log(" 4 ?? " + integerIndicatingWhichSceneItIs);
         }
         
         else if (_levelScript.whichLevel != -1 && sceneChangeCheck && !_gameManagement.hasLevelCompleted)
         {
             integerIndicatingWhichSceneItIs = _levelScript.whichLevel - 1;
         }
-
-        
     }
 
     void hasSceneChanged()
@@ -78,5 +74,4 @@ public class UndestroyableNumber : MonoBehaviour
             sceneChangeCheck = false;
         }
     }
-    
 }
